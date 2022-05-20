@@ -9,18 +9,17 @@ def build_link(path):
         return f'<a href="javascript:{quoted_code}">{path.stem}</a>'
 
 
-# Github markdown does not allow links with javascript, so hosting it as html on github pages
-with open("index.html", "r") as f:
-    template = f.read()
+with open("README.md", "r") as f:
+    readme = f.read()
 
 links = [build_link(path) for path in Path(".").glob("*.js")]
 
-with open("index.html", "w") as f:
-    bookmarkles = "\n</br>\n".join(links)
-    filled = re.sub(
+with open("README.md", "w") as f:
+    bookmarkles = "\n\n".join(links)
+    new_readme = re.sub(
         "(<!--- links start --->).*(<!--- links end --->)",
         f"\\1\n{bookmarkles}\n\\2",
-        template,
+        readme,
         flags=re.DOTALL,
     )
-    f.write(filled)
+    f.write(new_readme)
