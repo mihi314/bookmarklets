@@ -15,10 +15,10 @@ with open("README.md", "r") as f:
 links = [build_link(path) for path in Path(".").glob("*.js")]
 
 with open("README.md", "w") as f:
-    bookmarkles = "\n\n".join(links)
+    links_combined = "\n\n".join(links)
     new_readme = re.sub(
         "(<!--- links start --->).*(<!--- links end --->)",
-        f"\\1\n{bookmarkles}\n\\2",
+        f"\\1\n{links_combined}\n\\2",
         readme,
         flags=re.DOTALL,
     )
