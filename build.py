@@ -13,7 +13,7 @@ def build_link(path):
 with open("index.html", "r") as f:
     template = f.read()
 
-links = [build_link(path) for path in Path(".").glob("*.js")] * 3
+links = [build_link(path) for path in Path(".").glob("*.js")]
 
 with open("index.html", "w") as f:
     bookmarkles = "\n</br>\n".join(links)
