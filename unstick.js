@@ -1,11 +1,12 @@
 javascript: (function () {
-  let elements = document.querySelectorAll("body *");
-  for (let i = 0; i < elements.length; i++) {
-    const style = getComputedStyle(elements[i]);
+  for (let elem of document.querySelectorAll("body *")) {
+    const style = getComputedStyle(elem);
     if (style.position === "fixed" || style.position === "sticky") {
-      elements[i].parentNode.removeChild(elements[i]);
+      elem.parentNode.removeChild(elem);
     }
   }
-  document.querySelector("html").style.overflow = "visible";
-  document.querySelector("body").style.overflow = "visible";
+  for (let elem of document.querySelectorAll("html, body")) {
+    elem.style.setProperty("overflow", "visible", "important");
+    elem.style.setProperty("position", "static", "important");
+  }
 })();
