@@ -12,7 +12,7 @@ def build_link(path):
 with open("README.md", "r") as f:
     readme = f.read()
 
-links = [build_link(path) for path in Path(".").glob("*.js")]
+links = [build_link(path) for path in Path(".").glob("bookmarklets/*.js")]
 links_combined = "\n\n".join(links)
 new_readme = re.sub(
     "(<!--- links start --->).*(<!--- links end --->)",
