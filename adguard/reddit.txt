@@ -1,0 +1,27 @@
+
+! Title: Reddit - remove forced login/app popup
+! Description: Hides Reddit's non-dismissible login/app upsell bottom sheet and prevents it from locking page scroll, on both mobile and desktop web.
+! Version: 1.0.0
+! Expires: 4 days
+! Homepage: https://github.com/mihi314/bookmarklets/blob/master/adguard/reddit.txt
+
+! Based on: https://www.reddit.com/r/help/comments/1sudaup/comment/oibon30/
+ 
+! --- Hide the upsell dialog / bottom sheet ---
+www.reddit.com##.rpl-bottom-sheet
+reddit.com##.rpl-bottom-sheet
+old.reddit.com##.rpl-bottom-sheet
+ 
+! Desktop variant
+www.reddit.com##div#desktop-dynamic-upsell-dialog
+reddit.com##div#desktop-dynamic-upsell-dialog
+ 
+! --- Strip the scroll-lock classes Reddit keeps re-adding to <body> ---
+www.reddit.com#%#//scriptlet('remove-class', 'rpl-scroll-lock', 'body', 'stay')
+www.reddit.com#%#//scriptlet('remove-class', 'scroll-is-blocked', 'body', 'stay')
+reddit.com#%#//scriptlet('remove-class', 'rpl-scroll-lock', 'body', 'stay')
+reddit.com#%#//scriptlet('remove-class', 'scroll-is-blocked', 'body', 'stay')
+ 
+! --- Stop Reddit from swallowing touch scroll events ---
+www.reddit.com#%#//scriptlet('addEventListener-defuser', 'touchmove')
+reddit.com#%#//scriptlet('addEventListener-defuser', 'touchmove')
